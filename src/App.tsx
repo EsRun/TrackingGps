@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import Login from "./pages/auth/Login";
+import Main from "./pages/main/Main";
+import Tracking from "./pages/main/Tracking";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route element={<Main />}>
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<div>로딩 중. . .</div>}>
+                <Tracking />
+              </Suspense>
+            }
+          ></Route>
+        </Route>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </>
   );
 }
 
