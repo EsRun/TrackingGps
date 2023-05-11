@@ -6,8 +6,10 @@ export default function Main() {
   return (
     <>
       <Nav />
-      <Outlet />
-      <Side />
+      <div style={{ display: "flex" }}>
+        <Side />
+        <Outlet />
+      </div>
     </>
   );
 }

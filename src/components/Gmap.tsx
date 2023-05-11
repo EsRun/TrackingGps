@@ -1,9 +1,9 @@
-import React from "react";\
+import React from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
 const containerStyle = {
-  width: "400px",
-  height: "400px",
+  width: "100%",
+  height: "100vh",
 };
 
 const center = {
@@ -12,9 +12,10 @@ const center = {
 };
 
 const Gmap = () => {
+  //const key: any = process.env.REACT_APP_GOOGLEMAP_API_KEY;
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: process.env.REACT_APP_GOOGLEMAP_API_KEY,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLEMAP_API_KEY as string,
   });
 
   const [map, setMap] = React.useState(null);
