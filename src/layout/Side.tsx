@@ -8,7 +8,7 @@ const Side = () => {
         sx={{
           margin: 0,
           maxWidth: "300px !important",
-          backgroundColor: "blue",
+          backgroundColor: "gray",
         }}
       ></Container>
     </>
