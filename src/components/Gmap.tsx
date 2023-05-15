@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { GoogleMap, useJsApiLoader, Polyline } from "@react-google-maps/api";
 
 const containerStyle = {
@@ -42,7 +42,23 @@ const options = {
   zIndex: 1,
 };
 
-const Gmap = () => {
+interface Props {
+  changeCenter: google.maps.LatLng;
+  //value: string;
+  //className?: string;
+  //style?: CSSProperties;
+  //placeholder?: string;
+  //onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  //onSearch: () => void;
+}
+
+const Gmap: React.FC<Props> = ({ changeCenter }) => {
+  const [coordinateCenter, coordinateSetCenter] =
+    useState<google.maps.LatLngLiteral>({
+      lat: 37.772,
+      lng: -122.214,
+    });
+
   //const key: any = process.env.REACT_APP_GOOGLEMAP_API_KEY;
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -53,7 +69,7 @@ const Gmap = () => {
 
   const onLoad = React.useCallback(function callback(map: any) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    const bounds = new window.google.maps.LatLngBounds(center);
+    const bounds = new window.google.maps.LatLngBounds(coordinateCenter);
     map.fitBounds(bounds);
 
     setMap(map);
@@ -70,6 +86,7 @@ const Gmap = () => {
       zoom={10}
       onLoad={onLoad}
       onUnmount={onUnmount}
+      options={{ mapTypeControl: false }}
     >
       <Polyline onLoad={onLoads} path={path} options={options} />
       {/* Child components, such as markers, info windows, etc. */}
