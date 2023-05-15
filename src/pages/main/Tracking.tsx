@@ -13,8 +13,8 @@ const Tracking: React.FC = () => {
   });
   const centerHandler = () => {
     const centerLatLng: google.maps.LatLngLiteral = {
-      lat: 37.772,
-      lng: -122.214,
+      lat: 37.451259,
+      lng: 126.705314,
     };
     setCenter(centerLatLng);
   };

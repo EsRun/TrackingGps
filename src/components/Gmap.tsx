@@ -56,8 +56,8 @@ const Gmap: React.FC<Props> = ({ changeCenter }) => {
   console.log(changeCenter);
   const [coordinateCenter, coordinateSetCenter] =
     useState<google.maps.LatLngLiteral>({
-      lat: 37.772,
-      lng: -122.214,
+      lat: 37.559192,
+      lng: 126.972219,
     });
 
   //const key: any = process.env.REACT_APP_GOOGLEMAP_API_KEY;
@@ -70,7 +70,7 @@ const Gmap: React.FC<Props> = ({ changeCenter }) => {
 
   const onLoad = React.useCallback(function callback(map: any) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    const bounds = new window.google.maps.LatLngBounds(coordinateCenter);
+    const bounds = new google.maps.LatLngBounds(coordinateCenter);
     map.fitBounds(bounds);
 
     setMap(map);
@@ -83,8 +83,8 @@ const Gmap: React.FC<Props> = ({ changeCenter }) => {
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={center}
-      zoom={10}
+      center={changeCenter}
+      zoom={15}
       onLoad={onLoad}
       onUnmount={onUnmount}
       options={{ mapTypeControl: false }}
