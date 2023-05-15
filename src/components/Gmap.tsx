@@ -43,7 +43,7 @@ const options = {
 };
 
 interface Props {
-  changeCenter: google.maps.LatLng;
+  changeCenter: google.maps.LatLngLiteral;
   //value: string;
   //className?: string;
   //style?: CSSProperties;
@@ -53,6 +53,7 @@ interface Props {
 }
 
 const Gmap: React.FC<Props> = ({ changeCenter }) => {
+  console.log(changeCenter);
   const [coordinateCenter, coordinateSetCenter] =
     useState<google.maps.LatLngLiteral>({
       lat: 37.772,

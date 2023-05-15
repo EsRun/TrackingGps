@@ -17,6 +17,7 @@
     "@types/node": "^16.18.27",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
+    "@types/googlemaps": "^3.43.3",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "react": "^18.2.0",
@@ -51,5 +52,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
+   
 }
