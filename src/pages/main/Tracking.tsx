@@ -8,8 +8,8 @@ interface LatLng {
 
 const Tracking: React.FC = () => {
   const [center, setCenter] = useState<google.maps.LatLngLiteral>({
-    lat: 0,
-    lng: 0,
+    lat: 37.559192,
+    lng: 126.972219,
   });
   const centerHandler = () => {
     const centerLatLng: google.maps.LatLngLiteral = {
