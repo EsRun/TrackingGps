@@ -11,6 +11,7 @@ const Tracking: React.FC = () => {
     lat: 37.559192,
     lng: 126.972219,
   });
+
   const centerHandler = () => {
     const centerLatLng: google.maps.LatLngLiteral = {
       lat: 37.451259,
@@ -18,6 +19,7 @@ const Tracking: React.FC = () => {
     };
     setCenter(centerLatLng);
   };
+
   return (
     <div style={{ width: "100%", height: "100%" }}>
       <div

@@ -62,11 +62,9 @@ const Gmap: React.FC<Props> = ({ changeCenter }) => {
   const [mapCenter, setMapCenter] = useState(changeCenter);
 
   useEffect(() => {
-    console.log("ㅇㅇ");
     setMapCenter(changeCenter);
   }, [changeCenter]);
 
-  //const key: any = process.env.REACT_APP_GOOGLEMAP_API_KEY;
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLEMAP_API_KEY as string,
