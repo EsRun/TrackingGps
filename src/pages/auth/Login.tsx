@@ -99,7 +99,7 @@ export default function Login() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              로그인
+              Login
             </Button>
             {/* 
             <Grid container>
