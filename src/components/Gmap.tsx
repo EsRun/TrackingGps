@@ -44,6 +44,7 @@ const options = {
 
 interface Props {
   changeCenter: google.maps.LatLngLiteral;
+  changePoly: google.maps.LatLngLiteral[];
   //value: string;
   //className?: string;
   //style?: CSSProperties;
@@ -52,7 +53,7 @@ interface Props {
   //onSearch: () => void;
 }
 
-const Gmap: React.FC<Props> = ({ changeCenter }) => {
+const Gmap: React.FC<Props> = ({ changeCenter, changePoly }) => {
   const [coordinateCenter, coordinateSetCenter] =
     useState<google.maps.LatLngLiteral>({
       lat: 37.559192,
@@ -60,10 +61,12 @@ const Gmap: React.FC<Props> = ({ changeCenter }) => {
     });
 
   const [mapCenter, setMapCenter] = useState(changeCenter);
+  const [poly, setPoly] = useState(changePoly);
 
   useEffect(() => {
     setMapCenter(changeCenter);
-  }, [changeCenter]);
+    setPoly(changePoly);
+  }, [changeCenter, changePoly]);
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -91,9 +94,9 @@ const Gmap: React.FC<Props> = ({ changeCenter }) => {
       center={mapCenter}
       //onLoad={onLoad}
       onUnmount={onUnmount}
-      options={{ mapTypeControl: false, zoom: 20 }}
+      options={{ mapTypeControl: false, zoom: 13 }}
     >
-      <Polyline onLoad={onLoads} path={path} options={options} />
+      <Polyline onLoad={onLoads} path={poly} options={options} />
       {/* Child components, such as markers, info windows, etc. */}
       <></>
     </GoogleMap>
