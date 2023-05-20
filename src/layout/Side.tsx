@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import React from "react";
 
 const Side = () => {
@@ -10,7 +10,11 @@ const Side = () => {
           maxWidth: "300px !important",
           backgroundColor: "gray",
         }}
-      ></Container>
+      >
+       <Box>sideMenu1</Box> 
+       <Box>sideMenu2</Box> 
+       <Box>sideMenu3</Box> 
+      </Container>
     </>
   );
 };
