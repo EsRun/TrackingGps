@@ -1,5 +1,18 @@
-import { Container, Box } from "@mui/material";
+import { Container, Box, Theme, Typography } from "@mui/material";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 import React from "react";
+
+interface sideComponenetProps{
+  title: string;
+}
+
+const SideComponent: React.FC<sideComponenetProps> = ({title}) =>{
+  return (
+    <Box sx={{fontSize: 20}}>
+      <Typography variant="body1">{title}</Typography>
+    </Box>
+  )
+}
 
 const Side = () => {
   return (
@@ -11,12 +24,14 @@ const Side = () => {
           backgroundColor: "gray",
         }}
       >
-       <Box>sideMenu1</Box> 
-       <Box>sideMenu2</Box> 
-       <Box>sideMenu3</Box> 
+       <SideComponent title="Compoenet1" />
+       <SideComponent title="Compoenet2" />
+       <SideComponent title="Compoenet3" />
       </Container>
     </>
   );
 };
+
+
 
 export default Side;
