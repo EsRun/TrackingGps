@@ -87,7 +87,7 @@ const Nav = () => {
                 justifyContent: "center",
               }}
             >
-              <Typography>Odor Tracking System</Typography>
+              <Typography>Tracking System</Typography>
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
