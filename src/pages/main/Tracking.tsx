@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Gmap from "../../components/Gmap";
 
 interface LatLng {
+  id: number;
   lat: number;
   lng: number;
 }
@@ -14,6 +15,17 @@ const linePath: google.maps.LatLngLiteral[] = [
   { lat: 37.592822, lng: 127.078284 },
   { lat: 37.598478, lng: 127.101817 },
   { lat: 37.5997, lng: 127.13834 },
+];
+
+const markerPath: LatLng[] = [
+  { id: 1, lat: 37.563913, lng: 127.002242 },
+  { id: 2, lat: 37.570076, lng: 127.018883 },
+  { id: 3, lat: 37.569283, lng: 127.03225 },
+  { id: 4, lat: 37.576418, lng: 127.041389 },
+  { id: 5, lat: 37.587727, lng: 127.060987 },
+  { id: 6, lat: 37.592822, lng: 127.078284 },
+  { id: 7, lat: 37.598478, lng: 127.101817 },
+  { id: 8, lat: 37.5997, lng: 127.13834 },
 ];
 
 const Tracking: React.FC = () => {
@@ -29,6 +41,14 @@ const Tracking: React.FC = () => {
     },
   ]);
 
+  const [marker, setMarker] = useState<LatLng[]>([
+    {
+      id: 1,
+      lat: 37.559192,
+      lng: 126.972219,
+    },
+  ]);
+
   const centerHandler = () => {
     const centerLatLng: google.maps.LatLngLiteral = {
       lat: 37.559192,
@@ -39,6 +59,7 @@ const Tracking: React.FC = () => {
 
   const polyHandler = () => {
     setPolyLine([...linePath]);
+    setMarker([...markerPath]);
   };
 
   return (
@@ -63,7 +84,7 @@ const Tracking: React.FC = () => {
           polyLine Test
         </button>
       </div>
-      <Gmap changeCenter={center} changePoly={poly} />
+      <Gmap changeCenter={center} changePoly={poly} changeMarker={marker} />
     </div>
   );
 };

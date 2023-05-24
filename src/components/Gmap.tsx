@@ -1,19 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { GoogleMap, useJsApiLoader, Polyline } from "@react-google-maps/api";
+import React, { useEffect, useMemo, useState } from "react";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Polyline,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
   height: "100vh",
 };
 
-const center = {
-  lat: 37.772,
-  lng: -122.214,
-};
-
 const onLoads = (polyline: any) => {
   console.log("polyline: ", polyline);
 };
+
+interface LatLng {
+  id: number;
+  lat: number;
+  lng: number;
+}
 
 const path = [
   { lat: 37.772, lng: -122.214 },
@@ -45,6 +52,7 @@ const options = {
 interface Props {
   changeCenter: google.maps.LatLngLiteral;
   changePoly: google.maps.LatLngLiteral[];
+  changeMarker: LatLng[];
   //value: string;
   //className?: string;
   //style?: CSSProperties;
@@ -53,7 +61,7 @@ interface Props {
   //onSearch: () => void;
 }
 
-const Gmap: React.FC<Props> = ({ changeCenter, changePoly }) => {
+const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [coordinateCenter, coordinateSetCenter] =
     useState<google.maps.LatLngLiteral>({
       lat: 37.559192,
@@ -62,11 +70,25 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly }) => {
 
   const [mapCenter, setMapCenter] = useState(changeCenter);
   const [poly, setPoly] = useState(changePoly);
+  const [marker, setMarker] = useState(changeMarker);
+
+  const center = useMemo(
+    () => ({
+      lat: 37.559192,
+      lng: 126.972219,
+    }),
+    []
+  );
+
+  const onMarker = () => {
+    console.log("marker");
+  };
 
   useEffect(() => {
     setMapCenter(changeCenter);
     setPoly(changePoly);
-  }, [changeCenter, changePoly]);
+    setMarker(changeMarker);
+  }, [changeCenter, changePoly, changeMarker]);
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -74,6 +96,8 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly }) => {
   });
 
   const [map, setMap] = React.useState(null);
+
+  const onLoadMarker = () => {};
 
   const onLoad = React.useCallback(function callback(map: any) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
@@ -96,9 +120,17 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly }) => {
       onUnmount={onUnmount}
       options={{ mapTypeControl: false, zoom: 13 }}
     >
+      {marker.map((el, idx) => (
+        <Marker key={el.id} position={el}>
+          <InfoWindow position={el} onCloseClick={() => null}>
+            <div>
+              <p>위도: {el.lat}</p>
+              <p>경도: {el.lng}</p>
+            </div>
+          </InfoWindow>
+        </Marker>
+      ))}
       <Polyline onLoad={onLoads} path={poly} options={options} />
-      {/* Child components, such as markers, info windows, etc. */}
-      <></>
     </GoogleMap>
   ) : (
     <></>
