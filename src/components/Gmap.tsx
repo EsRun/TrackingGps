@@ -137,6 +137,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
           ) : null}
         </Marker>
       ))}
+      {/* 폴리라인에 옵션 사용하면 폴리라인이 안 그려지는 경우 발생 왜??? */}
       <Polyline path={poly} /* options={options} */ />
     </GoogleMap>
   ) : (
