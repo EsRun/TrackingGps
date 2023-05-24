@@ -12,10 +12,6 @@ const containerStyle = {
   height: "100vh",
 };
 
-const onLoads = (polyline: any) => {
-  console.log("polyline: ", polyline);
-};
-
 interface LatLng {
   id: number;
   lat: number;
@@ -71,6 +67,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [mapCenter, setMapCenter] = useState(changeCenter);
   const [poly, setPoly] = useState(changePoly);
   const [marker, setMarker] = useState(changeMarker);
+  const [activeMarker, setActiveMarker] = useState(null);
 
   const center = useMemo(
     () => ({
@@ -112,25 +109,35 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     setMap(null);
   }, []);
 
+  const handleMarker = (id: any) => {
+    if (activeMarker === id) {
+      return false;
+    }
+    setActiveMarker(id);
+  };
+
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={mapCenter}
       //onLoad={onLoad}
+      onClick={() => setActiveMarker(null)}
       onUnmount={onUnmount}
       options={{ mapTypeControl: false, zoom: 13 }}
     >
       {marker.map((el, idx) => (
-        <Marker key={el.id} position={el}>
-          <InfoWindow position={el} onCloseClick={() => null}>
-            <div>
-              <p>위도: {el.lat}</p>
-              <p>경도: {el.lng}</p>
-            </div>
-          </InfoWindow>
+        <Marker key={el.id} position={el} onClick={() => handleMarker(el.id)}>
+          {activeMarker === el.id ? (
+            <InfoWindow onCloseClick={() => null}>
+              <div>
+                <p>위도: {el.lat}</p>
+                <p>경도: {el.lng}</p>
+              </div>
+            </InfoWindow>
+          ) : null}
         </Marker>
       ))}
-      <Polyline onLoad={onLoads} path={poly} options={options} />
+      <Polyline path={poly} /* options={options} */ />
     </GoogleMap>
   ) : (
     <></>
