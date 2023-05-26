@@ -8,7 +8,7 @@ interface sideComponenetProps{
 
 const SideComponent: React.FC<sideComponenetProps> = ({title}) =>{
   return (
-    <Box sx={{padding: '20px', fontSize: 20,}}>
+    <Box sx={{padding: '20px', width: '100%', fontSize: 20,}}>
       <Typography variant="body2">{title}</Typography>
     </Box>
   )
