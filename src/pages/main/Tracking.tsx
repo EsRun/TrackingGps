@@ -6,15 +6,16 @@ interface LatLng {
   lat: number;
   lng: number;
 }
-const linePath: google.maps.LatLngLiteral[] = [
-  { lat: 37.563913, lng: 127.002242 },
-  { lat: 37.570076, lng: 127.018883 },
-  { lat: 37.569283, lng: 127.03225 },
-  { lat: 37.576418, lng: 127.041389 },
-  { lat: 37.587727, lng: 127.060987 },
-  { lat: 37.592822, lng: 127.078284 },
-  { lat: 37.598478, lng: 127.101817 },
-  { lat: 37.5997, lng: 127.13834 },
+
+const linePath: LatLng[] = [
+  { id: 1, lat: 37.563913, lng: 127.002242 },
+  { id: 2, lat: 37.570076, lng: 127.018883 },
+  { id: 3, lat: 37.569283, lng: 127.03225 },
+  { id: 4, lat: 37.576418, lng: 127.041389 },
+  { id: 5, lat: 37.587727, lng: 127.060987 },
+  { id: 6, lat: 37.592822, lng: 127.078284 },
+  { id: 7, lat: 37.598478, lng: 127.101817 },
+  { id: 8, lat: 37.5997, lng: 127.13834 },
 ];
 
 const markerPath: LatLng[] = [
@@ -29,13 +30,15 @@ const markerPath: LatLng[] = [
 ];
 
 const Tracking: React.FC = () => {
-  const [center, setCenter] = useState<google.maps.LatLngLiteral>({
+  const [center, setCenter] = useState<LatLng>({
+    id: 1,
     lat: 37.559192,
     lng: 126.972219,
   });
 
-  const [poly, setPolyLine] = useState<google.maps.LatLngLiteral[]>([
+  const [poly, setPolyLine] = useState<LatLng[]>([
     {
+      id: 1,
       lat: 37.559192,
       lng: 126.972219,
     },
@@ -50,7 +53,8 @@ const Tracking: React.FC = () => {
   ]);
 
   const centerHandler = () => {
-    const centerLatLng: google.maps.LatLngLiteral = {
+    const centerLatLng: LatLng = {
+      id: 1,
       lat: 37.559192,
       lng: 126.972219,
     };

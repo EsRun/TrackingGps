@@ -46,8 +46,8 @@ const options = {
 };
 
 interface Props {
-  changeCenter: google.maps.LatLngLiteral;
-  changePoly: google.maps.LatLngLiteral[];
+  changeCenter: LatLng;
+  changePoly: LatLng[];
   changeMarker: LatLng[];
   //value: string;
   //className?: string;
@@ -57,6 +57,19 @@ interface Props {
   //onSearch: () => void;
 }
 
+interface markerDataInterface {
+  id: number;
+  title: string;
+  content: string;
+}
+
+const markerData: markerDataInterface[] = [
+  { id: 1, title: "place1", content: "content1" },
+  { id: 2, title: "place2", content: "content2" },
+  { id: 3, title: "place3", content: "content3" },
+  { id: 4, title: "place4", content: "content4" },
+  { id: 5, title: "place5", content: "content5" },
+];
 const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [coordinateCenter, coordinateSetCenter] =
     useState<google.maps.LatLngLiteral>({
@@ -67,7 +80,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [mapCenter, setMapCenter] = useState(changeCenter);
   const [poly, setPoly] = useState(changePoly);
   const [marker, setMarker] = useState(changeMarker);
-  const [activeMarker, setActiveMarker] = useState(null);
+  const [activeMarker, setActiveMarker] = useState<any>(null);
 
   const center = useMemo(
     () => ({
@@ -109,7 +122,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     setMap(null);
   }, []);
 
-  const handleMarker = (id: any) => {
+  const handleMarker = (id: number) => {
     if (activeMarker === id) {
       return false;
     }
@@ -127,14 +140,18 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     >
       {marker.map((el, idx) => (
         <Marker key={el.id} position={el} onClick={() => handleMarker(el.id)}>
-          {activeMarker === el.id ? (
-            <InfoWindow onCloseClick={() => null}>
-              <div>
-                <p>위도: {el.lat}</p>
-                <p>경도: {el.lng}</p>
-              </div>
-            </InfoWindow>
-          ) : null}
+          {activeMarker === el.id
+            ? markerData.map((el2, idx2) =>
+                activeMarker === el2.id ? (
+                  <InfoWindow onCloseClick={() => null}>
+                    <div>
+                      <p>{markerData[idx].title}</p>
+                      <p>{markerData[idx].content}</p>
+                    </div>
+                  </InfoWindow>
+                ) : null
+              )
+            : null}
         </Marker>
       ))}
       {/* 폴리라인에 옵션 사용하면 폴리라인이 안 그려지는 경우 발생 왜??? */}
