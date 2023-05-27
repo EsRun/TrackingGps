@@ -70,6 +70,8 @@ const markerData: markerDataInterface[] = [
   { id: 4, title: "place4", content: "content4" },
   { id: 5, title: "place5", content: "content5" },
 ];
+
+// 센터 이동, 폴리라인 생성, 마커 생성
 const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [coordinateCenter, coordinateSetCenter] =
     useState<google.maps.LatLngLiteral>({
