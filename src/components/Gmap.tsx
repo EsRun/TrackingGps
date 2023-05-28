@@ -92,6 +92,8 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     []
   );
 
+    const circle = null;// 마커 클릭 시 서클 생성, 반경 옵션 포함 
+
   const onMarker = () => {
     console.log("marker");
   };
