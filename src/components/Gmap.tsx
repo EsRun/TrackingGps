@@ -6,6 +6,7 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
+import { Circle } from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
@@ -156,6 +157,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
                 ) : null
               )
             : null}
+            <Circle center={el} radius={1000} ></Circle>
         </Marker>
       ))}
       {/* 폴리라인에 옵션 사용하면 폴리라인이 안 그려지는 경우 발생 왜??? */}
