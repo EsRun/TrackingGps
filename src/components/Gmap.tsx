@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -127,12 +127,15 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     setMap(null);
   }, []);
 
-  const handleMarker = (id: number) => {
-    if (activeMarker === id) {
+  const onLoadCircle = useCallback((el: any) => {}, []);
+
+  const handleMarker = (el: any) => {
+    if (activeMarker === el.id) {
       return false;
     }
-    setActiveMarker(id);
+    setActiveMarker(el.id);
     // 이 부분에 마커 생성 코드 구현
+    onLoadCircle(el);
   };
 
   return isLoaded ? (
@@ -145,7 +148,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
       options={{ mapTypeControl: false, zoom: 13 }}
     >
       {marker.map((el, idx) => (
-        <Marker key={el.id} position={el} onClick={() => handleMarker(el.id)}>
+        <Marker key={el.id} position={el} onClick={() => handleMarker(el)}>
           {activeMarker === el.id
             ? markerData.map((el2, idx2) =>
                 activeMarker === el2.id ? (
