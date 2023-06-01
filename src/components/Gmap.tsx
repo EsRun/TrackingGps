@@ -127,7 +127,9 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     setMap(null);
   }, []);
 
-  const onLoadCircle = useCallback((el: any) => {}, []);
+  const onLoadCircle = useCallback((el: any) => {
+    return <Circle></Circle>
+  }, []);
 
   const handleMarker = (el: any) => {
     if (activeMarker === el.id) {
