@@ -84,6 +84,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [poly, setPoly] = useState(changePoly);
   const [marker, setMarker] = useState(changeMarker);
   const [activeMarker, setActiveMarker] = useState<any>(null);
+  const [circle, setCircle] = useState<any>(null);
 
   const center = useMemo(
     () => ({
@@ -92,8 +93,6 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     }),
     []
   );
-
-  const circle = null; // 마커 클릭 시 서클 생성, 반경 옵션 포함
 
   const onMarker = () => {
     console.log("marker");
@@ -163,7 +162,9 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
                 ) : null
               )
             : null}
+            {circle === el.id ?
           <Circle center={el} radius={1000}></Circle>
+            : null}
         </Marker>
       ))}
       {/* 폴리라인에 옵션 사용하면 폴리라인이 안 그려지는 경우 발생 왜??? */}
