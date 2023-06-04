@@ -136,7 +136,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     }
     setActiveMarker(el.id);
     // 이 부분에 마커 생성 코드 구현
-    onLoadCircle(el);
+    setCircle(el.id);
   };
 
   return isLoaded ? (
