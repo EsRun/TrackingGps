@@ -132,16 +132,21 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
 
   const handleMarker = (el: any) => {
     if (activeMarker === el.id) {
+      console.log("ㅇㅇ");
       return false;
     }
+
+    console.log(el);
     setActiveMarker(el.id);
+    console.log(activeMarker);
     // 이 부분에 마커 생성 코드 구현
     setCircle(el.id);
   };
 
   return isLoaded ? (
     <GoogleMap
-      mapContainerStyle={containerStyle}
+      //mapContainerStyle={containerStyle}
+      mapContainerStyle={{ width: "100vw", height: "100vh" }}
       center={mapCenter}
       //onLoad={onLoad}
       onClick={() => setActiveMarker(null)}
@@ -152,8 +157,11 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
         <Marker key={el.id} position={el} onClick={() => handleMarker(el)}>
           {activeMarker === el.id
             ? markerData.map((el2, idx2) =>
-                activeMarker === el2.id ? (
-                  <InfoWindow onCloseClick={() => null}>
+                el.id === el2.id ? (
+                  <InfoWindow
+                    key={idx2}
+                    onCloseClick={() => setActiveMarker(null)}
+                  >
                     <div>
                       <p>{markerData[idx].title}</p>
                       <p>{markerData[idx].content}</p>
@@ -162,10 +170,32 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
                 ) : null
               )
             : null}
-            {circle === el.id ?
-          <Circle center={el} radius={1000}></Circle>
-            : null}
+          {circle === el.id ? (
+            <Circle center={el} radius={1000}></Circle>
+          ) : null}
         </Marker>
+        /*
+        <Marker key={el.id} position={el} onClick={() => handleMarker(el)}>
+        {activeMarker === el.id
+          ? markerData.map((el2, idx2) =>
+              el.id === el2.id ? (
+                <InfoWindow
+                  key={idx2}
+                  onCloseClick={() => setActiveMarker(null)}
+                >
+                  <div>
+                    <p>{markerData[idx].title}</p>
+                    <p>{markerData[idx].content}</p>
+                  </div>
+                </InfoWindow>
+              ) : null
+            )
+          : null}
+        {circle === el.id ? (
+          <Circle center={el} radius={1000}></Circle>
+        ) : null}
+        </Marker>
+        */
       ))}
       {/* 폴리라인에 옵션 사용하면 폴리라인이 안 그려지는 경우 발생 왜??? */}
       <Polyline path={poly} /* options={options} */ />
