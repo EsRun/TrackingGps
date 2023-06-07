@@ -132,15 +132,15 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
 
   const handleMarker = (el: any) => {
     if (activeMarker === el.id) {
-      console.log("ㅇㅇ");
       return false;
     }
-
-    console.log(el);
     setActiveMarker(el.id);
-    console.log(activeMarker);
-    // 이 부분에 마커 생성 코드 구현
     setCircle(el.id);
+  };
+
+  const handleClose = () => {
+    setActiveMarker(null);
+    setCircle(null);
   };
 
   return isLoaded ? (
@@ -155,24 +155,17 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     >
       {marker.map((el, idx) => (
         <Marker key={el.id} position={el} onClick={() => handleMarker(el)}>
-          {activeMarker === el.id
-            ? markerData.map((el2, idx2) =>
-                el.id === el2.id ? (
-                  <InfoWindow
-                    key={idx2}
-                    onCloseClick={() => setActiveMarker(null)}
-                  >
-                    <div>
-                      <p>{markerData[idx].title}</p>
-                      <p>{markerData[idx].content}</p>
-                    </div>
-                  </InfoWindow>
-                ) : null
-              )
-            : null}
-          {circle === el.id ? (
-            <Circle center={el} radius={1000} onUnmount={() => setCircle(null)}></Circle>
-          ) : null}
+          {activeMarker && activeMarker === el.id && markerData[idx] && (
+            <InfoWindow onCloseClick={handleClose}>
+              <div>
+                <p>{markerData[idx].title}</p>
+                <p>{markerData[idx].content}</p>
+              </div>
+            </InfoWindow>
+          )}
+          {circle === el.id && activeMarker === el.id && (
+            <Circle center={el} radius={1000} />
+          )}
         </Marker>
         /*
         <Marker key={el.id} position={el} onClick={() => handleMarker(el)}>
