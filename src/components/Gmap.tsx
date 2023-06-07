@@ -72,6 +72,14 @@ const markerData: markerDataInterface[] = [
   { id: 5, title: "place5", content: "content5" },
 ];
 
+const circleData: Pick<markerDataInterface, "id">[] = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+];
+
 // 센터 이동, 폴리라인 생성, 마커 생성
 const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [coordinateCenter, coordinateSetCenter] =
@@ -163,7 +171,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
               </div>
             </InfoWindow>
           )}
-          {circle === el.id && activeMarker === el.id && (
+          {circle && circle === el.id && circleData[idx] && (
             <Circle center={el} radius={1000} />
           )}
         </Marker>
