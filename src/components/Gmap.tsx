@@ -161,6 +161,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
       onUnmount={onUnmount}
       options={{ mapTypeControl: false, zoom: 13 }}
     >
+      {/* 마커 클릭 시 서클 생성 및 삭제 구현해야됨, 왜 삭제가 안돼??? */}
       {marker.map((el, idx) => (
         <Marker key={el.id} position={el} onClick={() => handleMarker(el)}>
           {activeMarker && activeMarker === el.id && markerData[idx] && (
@@ -171,8 +172,12 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
               </div>
             </InfoWindow>
           )}
-          {circle && circle === el.id && circleData[idx] && (
-            <Circle center={el} radius={1000} />
+          {circle === el.id && (
+            <Circle
+              center={el}
+              radius={1000}
+              onUnmount={() => setCircle(null)}
+            />
           )}
         </Marker>
         /*
