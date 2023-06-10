@@ -148,7 +148,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
 
   const handleClose = () => {
     setActiveMarker(null);
-    setCircle(null);
+
   };
 
   return isLoaded ? (
