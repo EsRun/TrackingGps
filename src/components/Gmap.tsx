@@ -142,13 +142,15 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     if (activeMarker === el.id) {
       return false;
     }
+    if (circle === el.id) {
+      return false;
+    }
     setActiveMarker(el.id);
     setCircle(el.id);
   };
 
   const handleClose = () => {
     setActiveMarker(null);
-
   };
 
   return isLoaded ? (
@@ -180,28 +182,6 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
             />
           )}
         </Marker>
-        /*
-        <Marker key={el.id} position={el} onClick={() => handleMarker(el)}>
-        {activeMarker === el.id
-          ? markerData.map((el2, idx2) =>
-              el.id === el2.id ? (
-                <InfoWindow
-                  key={idx2}
-                  onCloseClick={() => setActiveMarker(null)}
-                >
-                  <div>
-                    <p>{markerData[idx].title}</p>
-                    <p>{markerData[idx].content}</p>
-                  </div>
-                </InfoWindow>
-              ) : null
-            )
-          : null}
-        {circle === el.id ? (
-          <Circle center={el} radius={1000}></Circle>
-        ) : null}
-        </Marker>
-        */
       ))}
       {/* 폴리라인에 옵션 사용하면 폴리라인이 안 그려지는 경우 발생 왜??? */}
       <Polyline path={poly} /* options={options} */ />
