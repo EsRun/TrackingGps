@@ -153,6 +153,11 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     setActiveMarker(null);
   };
 
+
+  const customModal = () =>{
+    return <div>커스텀 모달</div>
+  }
+
   return isLoaded ? (
     <GoogleMap
       //mapContainerStyle={containerStyle}
