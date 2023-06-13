@@ -7,6 +7,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import { Circle } from "@react-google-maps/api";
+import MarkerModal from "./MarkerModal";
 
 const containerStyle = {
   width: "100%",
@@ -93,6 +94,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [marker, setMarker] = useState(changeMarker);
   const [activeMarker, setActiveMarker] = useState<any>(null);
   const [circle, setCircle] = useState<any>(null);
+  const [modal, setModal] = useState<Boolean>(false);
 
   const center = useMemo(
     () => ({
@@ -147,16 +149,16 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     }
     setActiveMarker(el.id);
     setCircle(el.id);
+    setModal(true);
   };
 
   const handleClose = () => {
     setActiveMarker(null);
   };
 
-
-  const customModal = () =>{
-    return <div>커스텀 모달</div>
-  }
+  const customModal = () => {
+    return <div>커스텀 모달</div>;
+  };
 
   return isLoaded ? (
     <GoogleMap
@@ -190,6 +192,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
       ))}
       {/* 폴리라인에 옵션 사용하면 폴리라인이 안 그려지는 경우 발생 왜??? */}
       <Polyline path={poly} /* options={options} */ />
+      {modal && <MarkerModal />}
     </GoogleMap>
   ) : (
     <></>
