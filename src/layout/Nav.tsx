@@ -87,7 +87,13 @@ const Nav = () => {
                 justifyContent: "center",
               }}
             >
-              <Typography>Tracking System</Typography>
+              <Typography
+                component="a"
+                href="/s"
+                sx={{ color: "inherit", textDecoration: "none" }}
+              >
+                Tracking System
+              </Typography>
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>

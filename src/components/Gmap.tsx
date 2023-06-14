@@ -175,10 +175,11 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
         <Marker key={el.id} position={el} onClick={() => handleMarker(el)}>
           {activeMarker && activeMarker === el.id && markerData[idx] && (
             <InfoWindow onCloseClick={handleClose}>
-              <div>
+              {modal && <MarkerModal />}
+              {/* <div>
                 <p>{markerData[idx].title}</p>
                 <p>{markerData[idx].content}</p>
-              </div>
+              </div> */}
             </InfoWindow>
           )}
           {circle === el.id && (
@@ -192,7 +193,6 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
       ))}
       {/* 폴리라인에 옵션 사용하면 폴리라인이 안 그려지는 경우 발생 왜??? */}
       <Polyline path={poly} /* options={options} */ />
-      {modal && <MarkerModal />}
     </GoogleMap>
   ) : (
     <></>
