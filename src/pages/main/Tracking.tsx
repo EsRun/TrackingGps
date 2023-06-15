@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useState } from "react";
 import Gmap from "../../components/Gmap";
 
@@ -28,6 +29,31 @@ const markerPath: LatLng[] = [
   { id: 7, lat: 37.598478, lng: 127.101817 },
   { id: 8, lat: 37.5997, lng: 127.13834 },
 ];
+
+interface BtnType {
+  cHandler(): void;
+  pHandler(): void;
+}
+
+// 버튼 컴포넌트
+const Btn: React.FC<BtnType> = ({ cHandler, pHandler }) => {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        margin: "20px 0 0 20px",
+        zIndex: 1,
+      }}
+    >
+      <Button color="primary" variant="contained" onClick={cHandler}>
+        center Test
+      </Button>
+      <Button color="secondary" variant="contained" onClick={pHandler}>
+        polyLine Test
+      </Button>
+    </div>
+  );
+};
 
 const Tracking: React.FC = () => {
   const [center, setCenter] = useState<LatLng>({
@@ -68,26 +94,7 @@ const Tracking: React.FC = () => {
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
-      <div
-        style={{
-          position: "absolute",
-          margin: "20px 0 0 20px",
-          zIndex: 1,
-        }}
-      >
-        <button
-          style={{ width: "100px", height: "50px" }}
-          onClick={centerHandler}
-        >
-          center Test
-        </button>
-        <button
-          style={{ width: "100px", height: "50px" }}
-          onClick={polyHandler}
-        >
-          polyLine Test
-        </button>
-      </div>
+      <Btn cHandler={centerHandler} pHandler={polyHandler} />
       <Gmap changeCenter={center} changePoly={poly} changeMarker={marker} />
     </div>
   );
