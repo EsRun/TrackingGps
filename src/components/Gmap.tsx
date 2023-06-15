@@ -94,7 +94,9 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [marker, setMarker] = useState(changeMarker);
   const [activeMarker, setActiveMarker] = useState<any>(null);
   const [circle, setCircle] = useState<any>(null);
-  const [modal, setModal] = useState<Boolean>(false);
+  const [isModal, setIsModal] = useState<boolean>(false);
+  const modalOpen = () => setIsModal(true);
+  const modalClose = () => setIsModal(false);
 
   const center = useMemo(
     () => ({
@@ -149,7 +151,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     }
     setActiveMarker(el.id);
     setCircle(el.id);
-    setModal(true);
+    setIsModal(true);
   };
 
   const handleClose = () => {
@@ -175,7 +177,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
         <Marker key={el.id} position={el} onClick={() => handleMarker(el)}>
           {activeMarker && activeMarker === el.id && markerData[idx] && (
             <InfoWindow onCloseClick={handleClose}>
-              {modal && <MarkerModal />}
+              <MarkerModal isModal={isModal} modalClose={modalClose} />
               {/* <div>
                 <p>{markerData[idx].title}</p>
                 <p>{markerData[idx].content}</p>
