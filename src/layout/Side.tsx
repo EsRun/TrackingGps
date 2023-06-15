@@ -2,36 +2,48 @@ import { Container, Box, Theme, Typography } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import React from "react";
 
-interface sideComponenetProps{
+interface sideComponenetProps {
   title: string;
+  link: string;
 }
 
-const SideComponent: React.FC<sideComponenetProps> = ({title}) =>{
+const SideComponent: React.FC<sideComponenetProps> = ({ title, link }) => {
   return (
-    <Box sx={{padding: '20px', width: '100%', fontSize: 20,}}>
-      <Typography variant="body2">{title}</Typography>
+    <Box
+      component="a"
+      href={link}
+      sx={{
+        padding: "20px",
+        width: "100%",
+        fontSize: 20,
+        color: "inherit",
+        textDecoration: "none",
+      }}
+    >
+      <Typography align="center" variant="subtitle1">
+        {title}
+      </Typography>
     </Box>
-  )
-}
+  );
+};
 
 const Side = () => {
   return (
     <>
       <Container
+        fixed={true}
         sx={{
           margin: 0,
-          maxWidth: "300px !important",
+          width: "200px",
           backgroundColor: "gray",
         }}
       >
-       <SideComponent title="Compoenet1" />
-       <SideComponent title="Compoenet2" />
-       <SideComponent title="Compoenet3" />
+        <SideComponent title="Compoenet1" link="/s" />
+        <SideComponent title="Compoenet2" link="/s" />
+        <SideComponent title="Compoenet3" link="/s" />
       </Container>
     </>
   );
 };
-
-
 
 export default Side;

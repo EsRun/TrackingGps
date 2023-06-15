@@ -163,7 +163,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   return isLoaded ? (
     <GoogleMap
       //mapContainerStyle={containerStyle}
-      mapContainerStyle={{ width: "100vw", height: "100vh" }}
+      mapContainerStyle={{ width: "100%", height: "100vh" }}
       center={mapCenter}
       //onLoad={onLoad}
       onClick={() => setActiveMarker(null)}
