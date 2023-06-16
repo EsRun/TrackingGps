@@ -95,7 +95,6 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [activeMarker, setActiveMarker] = useState<any>(null);
   const [circle, setCircle] = useState<any>(null);
   const [isModal, setIsModal] = useState<boolean>(false);
-  const modalOpen = () => setIsModal(true);
   const modalClose = () => setIsModal(false);
 
   const center = useMemo(
@@ -156,6 +155,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
 
   const handleClose = () => {
     setActiveMarker(null);
+    setCircle(null);
   };
 
   const customModal = () => {
