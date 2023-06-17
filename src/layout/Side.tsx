@@ -10,19 +10,18 @@ interface sideComponenetProps {
 const SideComponent: React.FC<sideComponenetProps> = ({ title, link }) => {
   return (
     <Box
-      component="a"
-      href={link}
       sx={{
-        padding: "20px",
         width: "100%",
+        border: "1px solid #ccc",
         fontSize: 20,
         color: "inherit",
         textDecoration: "none",
       }}
     >
-      <Typography align="center" variant="subtitle1">
+      <Typography align="center" variant="subtitle1" sx={{borderBottom: "1px solid #ccc"}}>
         {title}
       </Typography>
+      <Box height={200} >Content Area</Box>
     </Box>
   );
 };
