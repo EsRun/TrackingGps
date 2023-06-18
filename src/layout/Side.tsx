@@ -12,16 +12,20 @@ const SideComponent: React.FC<sideComponenetProps> = ({ title, link }) => {
     <Box
       sx={{
         width: "100%",
-        border: "1px solid #ccc",
         fontSize: 20,
         color: "inherit",
         textDecoration: "none",
       }}
     >
-      <Typography align="center" variant="subtitle1" sx={{borderBottom: "1px solid #ccc"}}>
+      <Typography
+        padding="10px 0"
+        align="center"
+        variant="subtitle1"
+        sx={{ borderTop: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+      >
         {title}
       </Typography>
-      <Box height={200} >Content</Box>
+      <Box height={200}>Content</Box>
     </Box>
   );
 };
@@ -30,11 +34,9 @@ const Side = () => {
   return (
     <>
       <Container
-        fixed={true}
+        disableGutters
         sx={{
-          margin: 0,
           width: "200px",
-          backgroundColor: "gray",
         }}
       >
         <SideComponent title="Compoenet1" link="/s" />
