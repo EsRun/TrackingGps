@@ -21,7 +21,7 @@ const SideComponent: React.FC<sideComponenetProps> = ({ title, link }) => {
       <Typography align="center" variant="subtitle1" sx={{borderBottom: "1px solid #ccc"}}>
         {title}
       </Typography>
-      <Box height={200} >Content Area</Box>
+      <Box height={200} >Content</Box>
     </Box>
   );
 };
