@@ -25,7 +25,7 @@ const SideComponent: React.FC<sideComponenetProps> = ({ title, link }) => {
       >
         {title}
       </Typography>
-      <Box height={200}>Content</Box>
+      <Box sx={{ height: "200px", padding: "10px" }}>Content</Box>
     </Box>
   );
 };
@@ -36,7 +36,7 @@ const Side = () => {
       <Container
         disableGutters
         sx={{
-          width: "200px",
+          width: "250px",
         }}
       >
         <SideComponent title="Compoenet1" link="/s" />
