@@ -25,7 +25,11 @@ const SideComponent: React.FC<sideComponenetProps> = ({ title, link }) => {
       >
         {title}
       </Typography>
-      <Box sx={{ height: "200px", padding: "10px" }}>Content</Box>
+      <Box
+        sx={{ height: "200px", padding: "10px", backgroundColor: "#fbfbfb" }}
+      >
+        Content
+      </Box>
     </Box>
   );
 };

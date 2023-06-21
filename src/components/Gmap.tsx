@@ -178,6 +178,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
           {activeMarker && activeMarker === el.id && markerData[idx] && (
             <InfoWindow onCloseClick={handleClose}>
               <MarkerModal isModal={isModal} modalClose={modalClose} />
+
               {/* <div>
                 <p>{markerData[idx].title}</p>
                 <p>{markerData[idx].content}</p>
