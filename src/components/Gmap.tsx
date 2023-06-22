@@ -177,12 +177,12 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
         <Marker key={el.id} position={el} onClick={() => handleMarker(el)}>
           {activeMarker && activeMarker === el.id && markerData[idx] && (
             <InfoWindow onCloseClick={handleClose}>
-              <MarkerModal isModal={isModal} modalClose={modalClose} />
+              {/* <MarkerModal isModal={isModal} modalClose={modalClose} /> */}
 
-              {/* <div>
+              <div>
                 <p>{markerData[idx].title}</p>
                 <p>{markerData[idx].content}</p>
-              </div> */}
+              </div>
             </InfoWindow>
           )}
           {circle === el.id && (
