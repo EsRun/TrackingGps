@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import Main from "./pages/main/Main";
@@ -6,6 +6,8 @@ import Text from "./pages/main/Text";
 import Tracking from "./pages/main/Tracking";
 
 function App() {
+  const [auth, setAuth] = useState(true);
+  
   return (
     <>
       <Routes>
