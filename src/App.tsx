@@ -4,21 +4,18 @@ import Login from "./pages/auth/Login";
 import Main from "./pages/main/Main";
 import Text from "./pages/main/Text";
 import Tracking from "./pages/main/Tracking";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
-  const [auth, setAuth] = useState(true);
-  
+  const [auth, setAuth] = useState(false);
+
   return (
     <>
       <Routes>
         <Route element={<Main />}>
           <Route
             path="/"
-            element={
-              <Suspense fallback={<div>로딩 중. . .</div>}>
-                <Text />
-              </Suspense>
-            }
+            element={<PrivateRoute component={<Main />} authenticated={auth} />}
           />
           <Route
             path="/s"
