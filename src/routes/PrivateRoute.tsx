@@ -3,10 +3,10 @@ import { Navigate } from "react-router-dom";
 
 interface PrivateProps {
   authenticated: boolean;
-  component: React.ReactNode | null;
+  component: React.ComponentType;
 }
 
-const PrivateRoute: React.FC<PrivateProps> = ({ authenticated, component }) => {
+const PrivateRoute = ({ authenticated, component }: PrivateProps) => {
   return authenticated ? component : <Navigate to="/login"></Navigate>;
 };
 
