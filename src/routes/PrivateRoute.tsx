@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 interface PrivateProps {
   authenticated: boolean;
-  component: any;
+  component: JSX.Element;
 }
 
 const PrivateRoute = ({ authenticated, component }: PrivateProps) => {

@@ -15,7 +15,11 @@ function App() {
         <Route element={<Main />}>
           <Route
             path="/"
-            element={<PrivateRoute component={<Main />} authenticated={auth} />}
+            element={
+              <Suspense fallback={<div>로딩 중. . .</div>}>
+                <PrivateRoute component={<Main />} authenticated={auth} />
+              </Suspense>
+            }
           />
           <Route
             path="/s"
