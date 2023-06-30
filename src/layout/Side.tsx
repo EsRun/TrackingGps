@@ -1,4 +1,4 @@
-import { Container, Box, Theme, Typography } from "@mui/material";
+import { Container, Box, Theme, Typography, Link } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import React from "react";
 
@@ -18,10 +18,15 @@ const SideComponent: React.FC<sideComponenetProps> = ({ title, link }) => {
         textDecoration: "none",
       }}
     >
-      <Typography align="center" variant="subtitle1" sx={{borderBottom: "1px solid #ccc"}}>
+      <Typography
+        align="center"
+        variant="subtitle1"
+        sx={{ borderBottom: "1px solid #ccc" }}
+      >
         {title}
       </Typography>
-      <Box height={200} >Content</Box>
+      <Link />
+      <Box height={200}>Content</Box>
     </Box>
   );
 };

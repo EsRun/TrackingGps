@@ -7,7 +7,7 @@ import Tracking from "./pages/main/Tracking";
 import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
 
   return (
     <>
