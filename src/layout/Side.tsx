@@ -25,7 +25,7 @@ const SideComponent: React.FC<sideComponenetProps> = ({ title, link }) => {
       >
         {title}
       </Typography>
-      <Link />
+      <Link href={link}>{link}</Link>
       <Box height={200}>Content</Box>
     </Box>
   );
