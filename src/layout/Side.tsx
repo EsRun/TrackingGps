@@ -36,6 +36,7 @@ const Side = () => {
     <>
       <Container
         fixed={true}
+        disableGutters
         sx={{
           margin: 0,
           width: "200px",
