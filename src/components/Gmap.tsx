@@ -81,6 +81,21 @@ const circleData: Pick<markerDataInterface, "id">[] = [
   { id: 5 },
 ];
 
+const CustomModal: any = ({
+  titles,
+  contents,
+}: {
+  titles: any;
+  contents: any;
+}) => {
+  return (
+    <div>
+      <p>{titles}</p>
+      <p>{contents}</p>
+    </div>
+  );
+};
+
 // 센터 이동, 폴리라인 생성, 마커 생성
 const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [coordinateCenter, coordinateSetCenter] =
@@ -158,10 +173,6 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     setCircle(null);
   };
 
-  const customModal = () => {
-    return <div>커스텀 모달</div>;
-  };
-
   return isLoaded ? (
     <GoogleMap
       //mapContainerStyle={containerStyle}
@@ -178,11 +189,14 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
           {activeMarker && activeMarker === el.id && markerData[idx] && (
             <InfoWindow onCloseClick={handleClose}>
               {/* <MarkerModal isModal={isModal} modalClose={modalClose} /> */}
-
-              <div>
+              <CustomModal
+                titles={markerData[idx].title}
+                contents={markerData[idx].content}
+              />
+              {/* <div>
                 <p>{markerData[idx].title}</p>
                 <p>{markerData[idx].content}</p>
-              </div>
+              </div> */}
             </InfoWindow>
           )}
           {circle === el.id && (
