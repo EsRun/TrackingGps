@@ -173,6 +173,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     setCircle(null);
   };
 
+  // 구글맵 로드 문제 해결 해야됨
   return isLoaded ? (
     <GoogleMap
       //mapContainerStyle={containerStyle}
