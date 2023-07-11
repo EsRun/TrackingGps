@@ -8,6 +8,7 @@ import {
   InfoWindowF,
   PolylineF,
   CircleF,
+  MarkerF,
 } from "@react-google-maps/api";
 import { Circle } from "@react-google-maps/api";
 import MarkerModal from "./MarkerModal";
@@ -189,7 +190,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     >
       {/* 마커 클릭 시 서클 생성 및 삭제 구현해야됨, 왜 삭제가 안돼??? */}
       {marker.map((el, idx) => (
-        <Marker key={el.id} position={el} onClick={() => handleMarker(el)}>
+        <MarkerF key={el.id} position={el} onClick={() => handleMarker(el)}>
           {activeMarker === el.id && (
             <InfoWindowF onCloseClick={handleClose}>
               {/* <MarkerModal isModal={isModal} modalClose={modalClose} /> */}
@@ -210,7 +211,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
               //onUnmount={() => setCircle(null)}
             />
           )}
-        </Marker>
+        </MarkerF>
       ))}
       <PolylineF path={poly} options={options} />
     </GoogleMap>
