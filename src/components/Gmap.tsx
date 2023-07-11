@@ -161,10 +161,10 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
 
   const handleMarker = (el: any) => {
     if (activeMarker === el.id) {
-      return;
+      return false;
     }
     if (circle === el.id) {
-      return;
+      return false;
     }
     setActiveMarker(el.id);
     setCircle(el.id);
@@ -183,7 +183,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
       mapContainerStyle={{ width: "100%", height: "100vh" }}
       center={mapCenter}
       //onLoad={onLoad}
-      onClick={() => setActiveMarker(null)}
+      onClick={handleClose}
       onUnmount={onUnmount}
       options={{ mapTypeControl: false, zoom: 13 }}
     >
@@ -203,7 +203,13 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
               </div> */}
             </InfoWindowF>
           )}
-          {circle === el.id && <CircleF center={el} radius={1000} />}
+          {circle === el.id && (
+            <CircleF
+              center={el}
+              radius={1000}
+              //onUnmount={() => setCircle(null)}
+            />
+          )}
         </Marker>
       ))}
       <PolylineF path={poly} options={options} />
