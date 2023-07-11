@@ -5,6 +5,9 @@ import {
   Polyline,
   Marker,
   InfoWindow,
+  InfoWindowF,
+  PolylineF,
+  CircleF,
 } from "@react-google-maps/api";
 import { Circle } from "@react-google-maps/api";
 import MarkerModal from "./MarkerModal";
@@ -158,10 +161,10 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
 
   const handleMarker = (el: any) => {
     if (activeMarker === el.id) {
-      return false;
+      return;
     }
     if (circle === el.id) {
-      return false;
+      return;
     }
     setActiveMarker(el.id);
     setCircle(el.id);
@@ -187,30 +190,23 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
       {/* 마커 클릭 시 서클 생성 및 삭제 구현해야됨, 왜 삭제가 안돼??? */}
       {marker.map((el, idx) => (
         <Marker key={el.id} position={el} onClick={() => handleMarker(el)}>
-          {activeMarker && activeMarker === el.id && markerData[idx] && (
-            <InfoWindow onCloseClick={handleClose}>
+          {activeMarker === el.id && (
+            <InfoWindowF onCloseClick={handleClose}>
               {/* <MarkerModal isModal={isModal} modalClose={modalClose} /> */}
               <CustomModal
-                titles={markerData[idx].title}
-                contents={markerData[idx].content}
+                titles={markerData[0].title}
+                contents={markerData[0].content}
               />
               {/* <div>
                 <p>{markerData[idx].title}</p>
                 <p>{markerData[idx].content}</p>
               </div> */}
-            </InfoWindow>
+            </InfoWindowF>
           )}
-          {circle === el.id && (
-            <Circle
-              center={el}
-              radius={1000}
-              onUnmount={() => setCircle(null)}
-            />
-          )}
+          {circle === el.id && <CircleF center={el} radius={1000} />}
         </Marker>
       ))}
-      {/* 폴리라인에 옵션 사용하면 폴리라인이 안 그려지는 경우 발생 왜??? */}
-      <Polyline path={poly} /* options={options} */ />
+      <PolylineF path={poly} options={options} />
     </GoogleMap>
   ) : (
     <></>
