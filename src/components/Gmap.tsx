@@ -177,7 +177,6 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     setCircle(null);
   };
 
-  // 구글맵 로드 문제 해결 해야됨
   return isLoaded ? (
     <GoogleMap
       //mapContainerStyle={containerStyle}
@@ -188,7 +187,6 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
       onUnmount={onUnmount}
       options={{ mapTypeControl: false, zoom: 13 }}
     >
-      {/* 마커 클릭 시 서클 생성 및 삭제 구현해야됨, 왜 삭제가 안돼??? */}
       {marker.map((el, idx) => (
         <MarkerF key={el.id} position={el} onClick={() => handleMarker(el)}>
           {activeMarker === el.id && (
