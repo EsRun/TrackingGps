@@ -20,13 +20,13 @@ const SideComponent: React.FC<sideComponenetProps> = ({ title, link }) => {
     >
       <Typography
         align="center"
-        variant="subtitle1"
+        variant="subtitle2"
         sx={{ borderBottom: "1px solid #ccc" }}
       >
         {title}
       </Typography>
       <Link href={link}>{link}</Link>
-      <Box height={200}>Content</Box>
+      <Box height={200}></Box>
     </Box>
   );
 };
@@ -40,7 +40,6 @@ const Side = () => {
         sx={{
           margin: 0,
           width: "200px",
-          backgroundColor: "gray",
         }}
       >
         <SideComponent title="Compoenet1" link="/s" />
