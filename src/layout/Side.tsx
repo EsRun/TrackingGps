@@ -1,4 +1,4 @@
-import { Container, Box, Theme, Typography, Link } from "@mui/material";
+import { Container, Box, Theme, Typography, Link, Select } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import React from "react";
 
@@ -26,7 +26,9 @@ const SideComponent: React.FC<sideComponenetProps> = ({ title, link }) => {
         {title}
       </Typography>
       <Link href={link}>{link}</Link>
-      <Box height={200}></Box>
+      <Box height={200}>
+        <Select><option selected>1</option></Select>
+      </Box>
     </Box>
   );
 };
