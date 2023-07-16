@@ -5,6 +5,7 @@ import Main from "./pages/main/Main";
 import Text from "./pages/main/Text";
 import Tracking from "./pages/main/Tracking";
 import PrivateRoute from "./routes/PrivateRoute";
+import Join from "./pages/auth/Join";
 
 function App() {
   const [auth, setAuth] = useState(true);
@@ -31,7 +32,7 @@ function App() {
           />
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/join" />
+        <Route path="/join" element={<Join />}/>
       </Routes>
     </>
   );
