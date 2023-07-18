@@ -1,6 +1,14 @@
-import { Container, Box, Theme, Typography, Link, Select } from "@mui/material";
+import {
+  Container,
+  Box,
+  Theme,
+  Typography,
+  Link,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-import React from "react";
+import React, { useState } from "react";
 
 interface sideComponenetProps {
   title: string;
@@ -37,13 +45,17 @@ const SideComponent: React.FC<sideComponenetProps> = ({
 };
 
 const InComponent = (): JSX.Element => {
+  const [selected, setSelected] = useState("");
+  const options = [10, 30, 50, 100];
+
   return (
     <>
-      <Select>
-        <option>10</option>
-        <option>30</option>
-        <option>50</option>
-        <option>100</option>
+      <Select value={selected} onChange={(e) => setSelected(e.target.value)}>
+        {options.map((el, idx) => (
+          <MenuItem key={idx} value={el}>
+            {el}
+          </MenuItem>
+        ))}
       </Select>
     </>
   );
