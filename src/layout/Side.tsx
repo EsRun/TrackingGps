@@ -6,6 +6,8 @@ import {
   Link,
   Select,
   MenuItem,
+  InputLabel,
+  FormControl,
 } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import React, { useState } from "react";
@@ -50,13 +52,21 @@ const InComponent = (): JSX.Element => {
 
   return (
     <>
-      <Select value={selected} onChange={(e) => setSelected(e.target.value)}>
-        {options.map((el, idx) => (
-          <MenuItem key={idx} value={el}>
-            {el}
-          </MenuItem>
-        ))}
-      </Select>
+      <FormControl sx={{ m: 1, minWidth: 80 }}>
+        <InputLabel id="select-label">select</InputLabel>
+        <Select
+          value={selected}
+          labelId="select-label"
+          label="select"
+          onChange={(e) => setSelected(e.target.value)}
+        >
+          {options.map((el, idx) => (
+            <MenuItem key={idx} value={el}>
+              {el}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </>
   );
 };
