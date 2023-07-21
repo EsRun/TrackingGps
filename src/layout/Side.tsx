@@ -57,7 +57,6 @@ const InComponent = (): JSX.Element => {
         <Select
           value={selected}
           labelId="select-label"
-          label="select"
           onChange={(e) => setSelected(e.target.value)}
         >
           {options.map((el, idx) => (
