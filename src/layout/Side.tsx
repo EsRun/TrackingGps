@@ -10,7 +10,7 @@ import {
   FormControl,
 } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface sideComponenetProps {
   title: string;
@@ -50,6 +50,10 @@ const InComponent = ({onSelect}: any): JSX.Element => {
   const [selected, setSelected] = useState("");
   const options = [10, 30, 50, 100];
 
+  const changeSelect = (e: any) =>{
+    setSelected(e.target.value);
+    onSelect(e.target.value);
+  }
   return (
     <>
       <FormControl sx={{ m: 1, minWidth: 80 }}>
@@ -57,7 +61,7 @@ const InComponent = ({onSelect}: any): JSX.Element => {
         <Select
           value={selected}
           labelId="select-label"
-          onChange={(e) => onSelect(e.target.value)}
+          onChange={changeSelect}
         >
           {options.map((el, idx) => (
             <MenuItem key={idx} value={el}>
@@ -75,6 +79,10 @@ const Side = () => {
   const handleSelect = (v: any) =>{
     setCurrentSelect(v);
   }
+
+  useEffect(()=>{
+    console.log("ㅇㅇ", currentSelect);
+  }, []);
   return (
     <>
       <Container
@@ -88,7 +96,7 @@ const Side = () => {
         <SideComponent
           title={currentSelect}
           link="/s"
-          component={<InComponent onSelect={setCurrentSelect}/>}
+          component={<InComponent onSelect={handleSelect}/>}
         />
         <SideComponent title="Compoenet2" link="/s" />
         <SideComponent title="Compoenet3" link="/s" />
