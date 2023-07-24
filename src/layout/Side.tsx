@@ -46,23 +46,19 @@ const SideComponent: React.FC<sideComponenetProps> = ({
   );
 };
 
-const InComponent = ({onSelect}: any): JSX.Element => {
+const InComponent = ({ onSelect }: any): JSX.Element => {
   const [selected, setSelected] = useState("");
   const options = [10, 30, 50, 100];
 
-  const changeSelect = (e: any) =>{
+  const changeSelect = (e: any) => {
     setSelected(e.target.value);
     onSelect(e.target.value);
-  }
+  };
   return (
     <>
       <FormControl sx={{ m: 1, minWidth: 80 }}>
         <InputLabel id="select-label">select</InputLabel>
-        <Select
-          value={selected}
-          labelId="select-label"
-          onChange={changeSelect}
-        >
+        <Select value={selected} labelId="select-label" onChange={changeSelect}>
           {options.map((el, idx) => (
             <MenuItem key={idx} value={el}>
               {el}
@@ -75,14 +71,15 @@ const InComponent = ({onSelect}: any): JSX.Element => {
 };
 
 const Side = () => {
-  const [currentSelect, setCurrentSelect] = useState('default');
-  const handleSelect = (v: any) =>{
+  const [currentSelect, setCurrentSelect] = useState("default");
+  const handleSelect = (v: any) => {
     setCurrentSelect(v);
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("ㅇㅇ", currentSelect);
-  }, []);
+  }, [currentSelect]);
+
   return (
     <>
       <Container
@@ -96,7 +93,7 @@ const Side = () => {
         <SideComponent
           title={currentSelect}
           link="/s"
-          component={<InComponent onSelect={handleSelect}/>}
+          component={<InComponent onSelect={handleSelect} />}
         />
         <SideComponent title="Compoenet2" link="/s" />
         <SideComponent title="Compoenet3" link="/s" />
