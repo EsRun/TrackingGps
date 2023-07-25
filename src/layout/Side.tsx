@@ -70,10 +70,11 @@ const InComponent = ({ onSelect }: any): JSX.Element => {
   );
 };
 
-const Side = () => {
+const Side = ({ select }: any) => {
   const [currentSelect, setCurrentSelect] = useState("default");
   const handleSelect = (v: any) => {
     setCurrentSelect(v);
+    select(v);
   };
 
   useEffect(() => {
