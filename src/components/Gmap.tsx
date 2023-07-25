@@ -12,6 +12,7 @@ import {
 } from "@react-google-maps/api";
 import { Circle } from "@react-google-maps/api";
 import MarkerModal from "./MarkerModal";
+import { useOutletContext } from "react-router-dom";
 
 const containerStyle = {
   width: "100%",
@@ -116,6 +117,8 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [isModal, setIsModal] = useState<boolean>(false);
   const modalClose = () => setIsModal(false);
 
+  const contextTest = useOutletContext();
+
   const center = useMemo(
     () => ({
       lat: 37.559192,
@@ -132,7 +135,8 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     setMapCenter(changeCenter);
     setPoly(changePoly);
     setMarker(changeMarker);
-  }, [changeCenter, changePoly, changeMarker]);
+    console.log(contextTest);
+  }, [changeCenter, changePoly, changeMarker, contextTest]);
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",

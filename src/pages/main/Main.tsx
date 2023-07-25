@@ -18,7 +18,7 @@ export default function Main() {
       <Nav />
       <div style={{ display: "flex", width: "100%", height: "100%" }}>
         <Side select={handleSelect} />
-        <Outlet />
+        <Outlet context={{ currentSelect }} />
       </div>
     </>
   );
