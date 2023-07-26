@@ -10,7 +10,7 @@ export default function Main() {
   };
 
   useEffect(() => {
-    console.log("Main", currentSelect);
+    console.log("Main Component", currentSelect);
   }, [currentSelect]);
 
   return (
