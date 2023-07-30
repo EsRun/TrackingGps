@@ -117,7 +117,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [isModal, setIsModal] = useState<boolean>(false);
   const modalClose = () => setIsModal(false);
 
-  const contextTest = useOutletContext();
+  const contextTest: number = useOutletContext();
 
   const center = useMemo(
     () => ({
@@ -209,7 +209,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
           {circle === el.id && (
             <CircleF
               center={el}
-              radius={Number(contextTest)}
+              radius={contextTest}
               //onUnmount={() => setCircle(null)}
             />
           )}
