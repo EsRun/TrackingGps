@@ -48,7 +48,7 @@ const SideComponent: React.FC<sideComponenetProps> = ({
 
 const InComponent = ({ onSelect }: any): JSX.Element => {
   const [selected, setSelected] = useState("");
-  const options = [10, 30, 50, 100];
+  const options = [1000, 3000, 5000, 10000];
 
   const changeSelect = (e: any) => {
     setSelected(e.target.value);

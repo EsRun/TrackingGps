@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Main() {
-  const [currentSelect, setCurrentSelect] = useState("default");
+  const [currentSelect, setCurrentSelect] = useState(1000);
   const handleSelect = (v: any) => {
     setCurrentSelect(v);
   };

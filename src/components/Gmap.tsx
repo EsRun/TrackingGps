@@ -117,7 +117,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   const [isModal, setIsModal] = useState<boolean>(false);
   const modalClose = () => setIsModal(false);
 
-  const contextTest: number = useOutletContext();
+  const contextTest: any = useOutletContext();
 
   const center = useMemo(
     () => ({
@@ -135,7 +135,6 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     setMapCenter(changeCenter);
     setPoly(changePoly);
     setMarker(changeMarker);
-    console.log(contextTest);
   }, [changeCenter, changePoly, changeMarker, contextTest]);
 
   const { isLoaded } = useJsApiLoader({
@@ -209,7 +208,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
           {circle === el.id && (
             <CircleF
               center={el}
-              radius={contextTest}
+              radius={contextTest.currentSelect}
               //onUnmount={() => setCircle(null)}
             />
           )}
