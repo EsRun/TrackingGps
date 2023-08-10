@@ -14,6 +14,7 @@ import { Circle } from "@react-google-maps/api";
 import MarkerModal from "./MarkerModal";
 import { useOutletContext } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const containerStyle = {
   width: "100%",
@@ -104,7 +105,7 @@ const CustomModal: any = ({
 
 // 센터 이동, 폴리라인 생성, 마커 생성
 const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
-const reduxTest = useSelector();
+const reduxTest = useSelector((state: RootState) => state.counter);
 
   const [coordinateCenter, coordinateSetCenter] =
     useState<google.maps.LatLngLiteral>({
