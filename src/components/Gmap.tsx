@@ -105,7 +105,7 @@ const CustomModal: any = ({
 
 // 센터 이동, 폴리라인 생성, 마커 생성
 const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
-const reduxTest = useSelector((state: RootState) => state.counter);
+  const reduxTest = useSelector((state: RootState) => state.value);
 
   const [coordinateCenter, coordinateSetCenter] =
     useState<google.maps.LatLngLiteral>({
@@ -139,7 +139,8 @@ const reduxTest = useSelector((state: RootState) => state.counter);
     setMapCenter(changeCenter);
     setPoly(changePoly);
     setMarker(changeMarker);
-  }, [changeCenter, changePoly, changeMarker, contextTest]);
+    console.log("redux", reduxTest);
+  }, [changeCenter, changePoly, changeMarker, reduxTest]);
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
