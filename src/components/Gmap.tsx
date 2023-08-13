@@ -13,8 +13,9 @@ import {
 import { Circle } from "@react-google-maps/api";
 import MarkerModal from "./MarkerModal";
 import { useOutletContext } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import { plus, minus } from "../redux/reducers";
 
 const containerStyle = {
   width: "100%",
@@ -105,6 +106,7 @@ const CustomModal: any = ({
 
 // 센터 이동, 폴리라인 생성, 마커 생성
 const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
+  const dispatch = useDispatch();
   const reduxTest = useSelector((state: RootState) => state);
 
   const [coordinateCenter, coordinateSetCenter] =
@@ -169,6 +171,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   }, []);
 
   const handleMarker = (el: any) => {
+    dispatch(plus());
     if (activeMarker === el.id) {
       return false;
     }
@@ -178,6 +181,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     setActiveMarker(el.id);
     setCircle(el.id);
     setIsModal(true);
+    
   };
 
   const handleClose = () => {
