@@ -15,7 +15,6 @@ import MarkerModal from "./MarkerModal";
 import { useOutletContext } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { plus, minus } from "../redux/reducers";
 
 const containerStyle = {
   width: "100%",
@@ -171,7 +170,6 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
   }, []);
 
   const handleMarker = (el: any) => {
-    dispatch(plus());
     if (activeMarker === el.id) {
       return false;
     }
@@ -181,7 +179,6 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
     setActiveMarker(el.id);
     setCircle(el.id);
     setIsModal(true);
-    
   };
 
   const handleClose = () => {
@@ -217,7 +214,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
           {circle === el.id && (
             <CircleF
               center={el}
-              radius={contextTest.currentSelect}
+              radius={reduxTest.value}
               //onUnmount={() => setCircle(null)}
             />
           )}
