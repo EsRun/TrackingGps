@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const circleRadiusSlice = createSlice({
-  name: "circleRadius",
+export const counterSlice = createSlice({
+  name: "counter",
   initialState: { value: 1000 },
   reducers: {
     circleRadius: (state, action) => {
@@ -10,5 +10,5 @@ export const circleRadiusSlice = createSlice({
   },
 });
 
-export const { circleRadius } = circleRadiusSlice.actions;
-export default circleRadiusSlice.reducer;
+export const { circleRadius } = counterSlice.actions;
+export default counterSlice.reducer;

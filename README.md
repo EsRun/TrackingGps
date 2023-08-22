@@ -1,6 +1,7 @@
 #  Projects using TypeScript
 + redux toolkit
 + mui framework
++ google map
 
 # Getting Started with Create React App
 
