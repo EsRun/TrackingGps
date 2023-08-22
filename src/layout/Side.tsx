@@ -12,7 +12,7 @@ import {
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { circleRadius } from "../redux/reducers";
+import { circleRadiusSlice } from "../redux/reducers";
 
 interface sideComponenetProps {
   title: string;
@@ -56,7 +56,7 @@ const InComponent = ({ onSelect }: any): JSX.Element => {
   const changeSelect = (e: any) => {
     setSelected(e.target.value);
     onSelect(e.target.value);
-    dispatch(circleRadius(e.target.value));
+    dispatch(circleRadiusSlice(e.target.value));
   };
   return (
     <>

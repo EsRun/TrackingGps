@@ -4,11 +4,11 @@ export const counterSlice = createSlice({
   name: "counter",
   initialState: { value: 1000 },
   reducers: {
-    circleRadius: (state, action) => {
+    circleRadiusSlice: (state, action) => {
       state.value = action.payload;
     },
   },
 });
 
-export const { circleRadius } = counterSlice.actions;
+export const { circleRadiusSlice } = counterSlice.actions;
 export default counterSlice.reducer;
