@@ -214,7 +214,7 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
           {circle === el.id && (
             <CircleF
               center={el}
-              radius={reduxTest.circleRadiusSlice.value}
+              radius={reduxTest.circleSlice.value}
               //onUnmount={() => setCircle(null)}
             />
           )}
