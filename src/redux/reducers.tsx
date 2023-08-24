@@ -10,5 +10,15 @@ export const circleSlice = createSlice({
   },
 });
 
+export const authSlice = createSlice({
+  name: "auth",
+  initialState: false,
+  reducers: {
+    authenticated: (state, action) => {
+      state = action.payload;
+    },
+  },
+});
+
 export const { circleRadius } = circleSlice.actions;
-export default circleSlice.reducer;
+export const { authenticated } = authSlice.actions;

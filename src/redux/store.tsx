@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { circleSlice } from "./reducers";
+import { circleSlice, authSlice } from "./reducers";
 
 export const store = configureStore({
-  reducer: { circleSlice: circleSlice.reducer },
+  reducer: { circleSlice: circleSlice.reducer, authSlice: authSlice.reducer },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
