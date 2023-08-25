@@ -13,6 +13,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authenticated } from "../../redux/reducers";
 
 function Copyright(props: any) {
   return (
@@ -35,6 +37,7 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -43,6 +46,7 @@ export default function Login() {
       email: data.get("email"),
       password: data.get("password"),
     });
+    dispatch(authenticated(true));
     navigate("/s");
   };
 

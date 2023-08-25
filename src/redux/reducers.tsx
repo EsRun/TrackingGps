@@ -12,10 +12,10 @@ export const circleSlice = createSlice({
 
 export const authSlice = createSlice({
   name: "auth",
-  initialState: false,
+  initialState: { value: false },
   reducers: {
     authenticated: (state, action) => {
-      state = action.payload;
+      state.value = action.payload;
     },
   },
 });
