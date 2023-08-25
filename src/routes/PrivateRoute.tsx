@@ -14,7 +14,7 @@ const PrivateRoute = ({ authenticated, component }: PrivateProps) => {
     console.log("auth= ", auth);
   }, [auth]);
 
-  return authenticated ? component : <Navigate to="/login"></Navigate>;
+  return auth ? component : <Navigate to="/login"></Navigate>;
 };
 
 export default PrivateRoute;
