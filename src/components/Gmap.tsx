@@ -202,8 +202,8 @@ const Gmap: React.FC<Props> = ({ changeCenter, changePoly, changeMarker }) => {
             <InfoWindowF onCloseClick={handleClose}>
               {/* <MarkerModal isModal={isModal} modalClose={modalClose} /> */}
               <CustomModal
-                titles={markerData[0].title}
-                contents={markerData[0].content}
+                titles={markerData[idx] ? markerData[idx].title : null}
+                contents={markerData[idx] ? markerData[idx].content : null}
               />
               {/* <div>
                 <p>{markerData[idx].title}</p>
