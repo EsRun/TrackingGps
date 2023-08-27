@@ -42,12 +42,15 @@ export default function Login() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    console.log(data);
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
-    dispatch(authenticated(true));
-    navigate("/s");
+    if(data.get("email")) {
+      dispatch(authenticated(true));
+      navigate("/s");
+    }
   };
 
   return (
