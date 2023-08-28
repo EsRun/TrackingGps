@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useRef } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -39,6 +39,9 @@ const theme = createTheme();
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const emailInput = useRef<any>();
+  const pwInput = useRef<any>();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -47,7 +50,10 @@ export default function Login() {
       email: data.get("email"),
       password: data.get("password"),
     });
-    if(data.get("email")) {
+    if (!data.get("email")) emailInput.current.focus();
+    if (!data.get("password")) pwInput.current.focus();
+
+    if (data.get("email")) {
       dispatch(authenticated(true));
       navigate("/s");
     }
@@ -85,6 +91,7 @@ export default function Login() {
               label="Id"
               name="email"
               autoComplete="email"
+              inputRef={emailInput}
               autoFocus
             />
             <TextField
@@ -96,6 +103,7 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              inputRef={pwInput}
             />
             {/*  
             <FormControlLabel
