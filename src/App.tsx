@@ -17,7 +17,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Suspense fallback={<div>로딩 중. . .</div>}>
+              <Suspense fallback={<div>로딩 중. . . .</div>}>
                 <PrivateRoute component={<Text />} authenticated={auth} />
               </Suspense>
             }
